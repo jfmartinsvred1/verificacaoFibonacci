@@ -18,7 +18,9 @@ function isFibonacci(n: number): boolean {
     return false;
 }
 
-
+function verifyString(a:string){
+    return (a.toLowerCase().match(/a/g) || []).length;
+}
 
 app.post('/check-fibonacci/:number', async (request:FastifyRequest, reply:FastifyReply) => {
 
@@ -40,10 +42,79 @@ app.post('/check-fibonacci/:number', async (request:FastifyRequest, reply:Fastif
             isFibonacci: result
         });
     } catch (error) {
-        reply.status(400).send({ error: 'Invalid input' });
+        reply.status(404).send({ error: 'Invalid input' });
+    }
+});
+app.get('/check-fibonacci/:number', async (request:FastifyRequest, reply:FastifyReply) => {
+
+    const fibonacciSchema = z.object({
+        number: z.string().transform(val => parseInt(val, 10)).refine(val => !isNaN(val) && val >= 0, {
+            message: "Invalid number"
+        })
+    });
+
+    try {
+        
+        const {number} = fibonacciSchema.parse(request.params);
+
+        const result = isFibonacci(number);
+
+
+        reply.send({
+            number: number,
+            isFibonacci: result
+        });
+    } catch (error) {
+        reply.status(404).send({ error: 'Invalid input' });
     }
 });
 
+app.post('/check-string/:a', async (request:FastifyRequest, reply:FastifyReply) => {
+
+    const fibonacciSchema = z.object({
+        a: z.string()
+    });
+
+    try {
+        
+        const {a} = fibonacciSchema.parse(request.params);
+
+        const result = verifyString(a);
+        const contains= result>0;
+
+
+        reply.send({
+            string: a,
+            contains: contains,
+            count:result
+        });
+    } catch (error) {
+        reply.status(404).send({ error: 'Invalid input' });
+    }
+});
+app.get('/check-string/:a', async (request:FastifyRequest, reply:FastifyReply) => {
+
+    const fibonacciSchema = z.object({
+        a: z.string()
+    });
+
+    try {
+        
+        const {a} = fibonacciSchema.parse(request.params);
+
+        const result = verifyString(a);
+        const contains= result>0;
+
+
+        reply.send({
+            string: a,
+            contains: contains,
+            count:result
+        });
+    } catch (error) {
+        reply.status(404).send({ error: 'Invalid input' });
+    }
+});
 
 app.listen({
     port: 3030,
