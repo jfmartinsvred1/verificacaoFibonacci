@@ -11,7 +11,7 @@ Informado um número, ele calcule a sequência de Fibonacci e retorne uma mensag
 
 3.Fazer uma requisição post ou get para o endpoint 
 
-        http://localhost:3030/check-fibonacci/{numero_que_deseja_verificar}
+        http://localhost:3030/check-fibonacci/numero_que_deseja_verificar
 
 4. Retorno json com duas propriedades.
 
@@ -20,7 +20,7 @@ Informado um número, ele calcule a sequência de Fibonacci e retorne uma mensag
    
 5. Verificação de string post ou get para o endpoint
    
-         http://localhost:3030/check-string/{string_que_deseja_verificar}
+         http://localhost:3030/check-string/string_que_deseja_verificar
 
 7. Retorno json com três propriedades.
    
