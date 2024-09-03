@@ -1,5 +1,6 @@
-# verificacaoFibonacci
+# verificaçãoFibonacci e verificação de string "A"
 Informado um número, ele calcule a sequência de Fibonacci e retorne uma mensagem avisando se o número informado pertence ou não a sequência.
+Informando uma string, ele calcula quantas vezes a letra "a", apareceu na string e se ela apareceu.
 
 1.baixar o projeto, entrar na raiz do projeto e baixar as dependências.
     
